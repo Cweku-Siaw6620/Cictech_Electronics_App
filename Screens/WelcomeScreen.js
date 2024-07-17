@@ -1,5 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
-import { ImageBackground, Text, View, StyleSheet } from 'react-native';
+import { ImageBackground,Text, View, StyleSheet,  TouchableOpacity } from 'react-native';
+import Home from '../Components/Home';
 
 export default function WelcomeScreen({navigation}) {
   return (
@@ -7,7 +8,7 @@ export default function WelcomeScreen({navigation}) {
     style={styles.ImageBackground}
     source={require("../assets/logo.jpg")}>
       <View>
-      <Text></Text>
+      <Text>Hi</Text>
       </View>
     </ImageBackground>
   );
