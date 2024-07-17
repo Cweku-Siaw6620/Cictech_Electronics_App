@@ -5,7 +5,6 @@ import WelcomeScreen from './Screens/WelcomeScreen';
 import HomeScreen from './Screens/HomeScreen';
 import CartScreen from './Screens/CartScreen';
 import Profile from './Screens/Profile';
-/*import Home from './Components/Home';*/
 
 const Stack = createStackNavigator();
 const Tabs = createBottomTabNavigator();

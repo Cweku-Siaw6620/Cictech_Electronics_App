@@ -14,7 +14,7 @@ export default function WelcomeScreen({navigation}) {
 
     <Button 
       title='Go to Screen'
-      onPress={()=>{Screens}}
+      onPress={()=>{}}
     />
     </ImageBackground>
   );
