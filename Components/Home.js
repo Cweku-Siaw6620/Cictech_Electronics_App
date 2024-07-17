@@ -1,4 +1,4 @@
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+/*import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import HomeScreen from '../Screens/HomeScreen';
 import CartScreen from '../Screens/CartScreen';
@@ -18,4 +18,4 @@ function Home() {
     );
   }
 
-  export default Home;
+  export default Home;*/
