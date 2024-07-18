@@ -11,7 +11,7 @@ const Tabs = createBottomTabNavigator();
 
 function Home() {
     return (
-      <NavigationContainer>
+      <NavigationContainer independent={true}>
           <Tabs.Navigator initialRouteName='HomeScreen'>
               <Tabs.Screen name='HomeScreen' component={HomeScreen}/>
               <Tabs.Screen name='Cart' component={CartScreen}/>
@@ -25,8 +25,13 @@ export default function App() {
   return(
     <NavigationContainer>
         <Stack.Navigator initialRouteName='Welcome'>
-            <Stack.Screen name='Welcome' component={WelcomeScreen}/>
-            <Stack.Screen name='HomeComponent' component={Home}/>
+            <Stack.Screen
+             options={{headerShown:false}}
+            name='Welcome' component={WelcomeScreen}/>
+            <Stack.Screen 
+            options={{headerShown:false}}
+            name='HomeComponent' component={Home}
+            />
         </Stack.Navigator>
     </NavigationContainer>
 )

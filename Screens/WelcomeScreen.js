@@ -1,30 +1,46 @@
-import { NavigationContext } from '@react-navigation/native';
-import { ImageBackground,Text, View, StyleSheet,  TouchableOpacity, Button } from 'react-native';
+import React, { useEffect } from 'react';
+import { View, Text, Image, StyleSheet, Animated } from 'react-native';
 
-export default function WelcomeScreen({navigation}) {
-  /*const Screens = navigation.navigate("HomeComponent")*/
+const WelcomeScreen = ({ navigation }) => {
+  const opacity = new Animated.Value(1);
+
+  useEffect(() => {
+    // Fade out after 3 seconds
+    Animated.timing(opacity, {
+      toValue: 0,
+      duration: 500,
+      delay: 2000,
+      useNativeDriver: true,
+    }).start(() => {
+      // Navigate to Home screen
+      navigation.replace('HomeComponent');
+    });
+  }, [navigation]);
 
   return (
-    <ImageBackground 
-    style={styles.ImageBackground}
-    source={require("../assets/logo.jpg")}>
-    <TouchableOpacity >
-    <Text>Home</Text>
-    </TouchableOpacity>
-
-    <Button 
-      title='Go to Screen'
-      onPress={()=>{}}
-    />
-    </ImageBackground>
+    <Animated.View style={[styles.container, { opacity }]}>
+      <Image source={require('../assets/logo.jpg')} style={styles.logo} />
+      <Text style={styles.text}>CICTECH</Text>
+    </Animated.View>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  ImageBackground: {
-  flex:1,
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#FFFFFF',
+  },
+  logo: {
+    width: 100,
+    height: 100,
+    marginBottom: 20,
+  },
+  text: {
+    fontSize: 24,
+    fontWeight: 'bold',
   },
 });
 
-
-
+export default WelcomeScreen;
