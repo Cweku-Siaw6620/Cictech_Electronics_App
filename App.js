@@ -35,18 +35,18 @@ function Home() {
               <Tabs.Screen  options={{
                 headerShown:false,
                 tabBarIcon: ({ color, size }) => (
-                  <Ionicons name="man" size={size} color={color} />
-                ),
-              }} 
-              name='Profile' component={Profile}/>
-
-              <Tabs.Screen  options={{
-                headerShown:false,
-                tabBarIcon: ({ color, size }) => (
                   <Ionicons name="laptop" size={size} color={color} />
                 ),
               }} 
               name='Repairs' component={RepairScreen}/>
+
+              <Tabs.Screen  options={{
+                 headerShown:false,
+                tabBarIcon: ({ color, size }) => (
+                  <Ionicons name="man" size={size} color={color} />
+                ),
+              }} 
+              name='Profile' component={Profile}/>
           </Tabs.Navigator>
       </NavigationContainer>
     );
