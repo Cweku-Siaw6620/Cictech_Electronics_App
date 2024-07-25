@@ -37,8 +37,10 @@ function Home() {
                 tabBarIcon: ({ color, size }) => (
                   <Ionicons name="laptop" size={size} color={color} />
                 ),
-              }} 
-              name='Repairs' component={RepairScreen}/>
+              }}
+              name='Repairs' 
+              component={RepairScreen}
+              />
 
               <Tabs.Screen  options={{
                  headerShown:false,
