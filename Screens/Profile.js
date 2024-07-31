@@ -14,7 +14,7 @@ export default function Profile({navigation}) {
   const navigateToSettings=()=>{
     navigation.navigate('Settings')
   }
-
+  
 
   return (
     <>

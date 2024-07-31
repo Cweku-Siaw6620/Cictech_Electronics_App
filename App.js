@@ -9,6 +9,7 @@ import RepairScreen from './Screens/RepairScreen';
 import { Ionicons } from '@expo/vector-icons';
 import ProductDetail from './Components/ProductDetail';
 import SettingsScreen from './Screens/SettingsScreen';
+import AccountDetail from './Components/AccountDetail';
 
 const Stack = createStackNavigator();
 const Tabs = createBottomTabNavigator();
@@ -71,6 +72,9 @@ export default function App() {
             />
              <Stack.Screen 
             name='Settings' component={SettingsScreen}
+            />
+             <Stack.Screen 
+            name='Account' component={AccountDetail}
             />
         </Stack.Navigator>
     </NavigationContainer>

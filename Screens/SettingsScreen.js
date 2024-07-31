@@ -5,14 +5,19 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default function SettingsScreen({navigation}) {
+
+  const navigateToAccountScreen =()=>{
+    navigation.navigate('Account')
+  }
+
   return (
     <SafeAreaView style={{flex:1}}>
       <View style={{
           rowGap:13,
           }}>
 
-        <TouchableOpacity style={styles.touch}>
-        <Text style={styles.text}>Account</Text>
+        <TouchableOpacity style={styles.touch} onPress={navigateToAccountScreen}>
+        <Text style={styles.text}>My Account</Text>
         <Icon style={{marginLeft:200}} name="angle-right" size={30} color="black" />
         </TouchableOpacity>
 
