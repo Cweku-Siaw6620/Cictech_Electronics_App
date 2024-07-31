@@ -11,6 +11,10 @@ export default function Profile({navigation}) {
     Linking.openURL(facebookUrl);
   };
 
+  const navigateToSettings=()=>{
+    navigation.navigate('Settings')
+  }
+
 
   return (
     <>
@@ -66,7 +70,7 @@ export default function Profile({navigation}) {
         <Icon style={{marginLeft:175}} name="angle-right" size={30} color="black" />
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.touch}>
+        <TouchableOpacity style={styles.touch} onPress={navigateToSettings}>
         <Icon name="cog" size={30} color="black" />
         <Text style={styles.text}>Settings</Text>
         <Icon style={{marginLeft:190}} name="angle-right" size={30} color="black" />

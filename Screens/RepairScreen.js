@@ -2,9 +2,10 @@ import { StyleSheet, Text, View,Image, TouchableOpacity } from 'react-native';
 import { FlatList, ScrollView } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/FontAwesome/';
 
-
 export default function RepairScreen({navigation}) {
 
+  const click = () => navigation.navigate('ProductDetail');
+  
   const getCurrentDate = () => {
     const date = new Date();
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -56,7 +57,7 @@ export default function RepairScreen({navigation}) {
 
 
   return (
-    <ScrollView style={styles.container}>
+    <View style={styles.container}>
    
       <Text style={styles.dateText}>{getCurrentDate()}</Text>
       {/*Input Customer's name here */}
@@ -72,9 +73,11 @@ export default function RepairScreen({navigation}) {
       keyExtractor={(item) => item.id}
       renderItem={({ item }) => (
           <View style={{margin:6,marginRight:6}}>
-            <TouchableOpacity>
+
+            <TouchableOpacity onPress={click}>
                 <Image source={item.Image} style={styles.images} />
                 </TouchableOpacity>
+                
                 <View style={{flexDirection:"row",columnGap:40}}>
                 <Text style={{fontWeight:'bold'}}>{item.name}</Text>
                </View>
@@ -83,7 +86,7 @@ export default function RepairScreen({navigation}) {
                 numColumns={2}
             />
     
-    </ScrollView>
+    </View>
   );
 };
 

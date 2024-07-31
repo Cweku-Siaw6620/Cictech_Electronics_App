@@ -7,13 +7,14 @@ import CartScreen from './Screens/CartScreen';
 import Profile from './Screens/Profile';
 import RepairScreen from './Screens/RepairScreen';
 import { Ionicons } from '@expo/vector-icons';
+import ProductDetail from './Components/ProductDetail';
+import SettingsScreen from './Screens/SettingsScreen';
 
 const Stack = createStackNavigator();
 const Tabs = createBottomTabNavigator();
 
 function Home() {
     return (
-      <NavigationContainer independent={true}>
           <Tabs.Navigator initialRouteName='Home'>
               <Tabs.Screen  options={{
                 headerShown:false,
@@ -50,7 +51,6 @@ function Home() {
               }} 
               name='Profile' component={Profile}/>
           </Tabs.Navigator>
-      </NavigationContainer>
     );
   }
 
@@ -64,6 +64,13 @@ export default function App() {
             <Stack.Screen 
             options={{headerShown:false}}
             name='HomeComponent' component={Home}
+            />
+            <Stack.Screen 
+            options={{headerShown:false}}
+            name='ProductDetail' component={ProductDetail}
+            />
+             <Stack.Screen 
+            name='Settings' component={SettingsScreen}
             />
         </Stack.Navigator>
     </NavigationContainer>
