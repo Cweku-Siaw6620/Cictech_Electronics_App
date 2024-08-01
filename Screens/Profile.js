@@ -1,9 +1,34 @@
-import React from 'react';
-import { ImageBackground, StyleSheet, Text, View, Image, TouchableOpacity, Linking} from 'react-native';
+import React,{useState} from 'react';
+import { ImageBackground, StyleSheet, Text, View, Image, TouchableOpacity, Linking, Modal} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+
 export default function Profile({navigation}) {
+  const [modalVisible, setModalVisible] = useState(false);
+  const phoneNumber = '0249509090';
+  const countryCode = '233';
+  const whatsappURL = `whatsapp://send?phone=${countryCode}${phoneNumber}`;
+
+  const openModal = () => {
+    setModalVisible(true);
+  };
+
+  const closeModal = () => {
+    setModalVisible(false);
+  };
+
+  const handlePhonePress = () => {
+    Linking.openURL(`tel:${phoneNumber}`).catch((err) => 
+      Alert.alert("Error", `Failed to dial: ${err.message}`)
+    );
+  };
+
+  const handleWhatsappPress = () => {
+    Linking.openURL(whatsappURL).catch((err) => 
+      Alert.alert("Error", `Failed to open WhatsApp: ${err.message}`)
+    );
+  };
 
   const  handleFacebookClick = () => {
     // Replace with your Facebook URL
@@ -15,6 +40,9 @@ export default function Profile({navigation}) {
     navigation.navigate('Settings')
   }
   
+  navigateToHomeScreen=()=>{
+    navigation.navigate('HomeScreen')
+  }
 
   return (
     <>
@@ -57,25 +85,59 @@ export default function Profile({navigation}) {
           padding:3
           }}>
 
-          {/*Navigations to be done*/}
-        <TouchableOpacity style={styles.touch}>
+          {/*View Market */}
+        <TouchableOpacity style={styles.touch} onPress={navigateToHomeScreen}>
         <Icon name="home" size={30} color="black" />
         <Text style={styles.text}>View Market</Text>
         <Icon style={{marginLeft:150}} name="angle-right" size={30} color="black" />
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.touch}>
+          {/*Contact Us */}
+        <TouchableOpacity style={styles.touch} onPress={openModal}>
         <Icon name="phone" size={30} color="black" />
         <Text style={styles.text}>ContactUs</Text>
         <Icon style={{marginLeft:175}} name="angle-right" size={30} color="black" />
         </TouchableOpacity>
 
+          {/*Modal Screen here */}
+       <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={closeModal}
+      >
+        <View style={styles.modalContainer}>
+          <View style={styles.modalView}>
+            <Image source={require("../assets/logo.jpg")} style={styles.logo}/>
+            <Text>CICTECH ELECTRONICS</Text>
+            <Text style={styles.modalText}>Contact Us</Text>
+            <TouchableOpacity style={{flexDirection:'row',columnGap:20,marginBottom:20}} onPress={handlePhonePress}>
+            <Image style={styles.modalImage} source={require('../assets/phone.jpg')}/>
+            <Text style={{fontSize:18}}>{phoneNumber}</Text>
+
+            </TouchableOpacity>
+            <TouchableOpacity style={{flexDirection:'row',columnGap:20,marginBottom:20}} onPress={handleWhatsappPress}>
+            <Image style={styles.modalImage} source={require('../assets/whatsapp.jpg')}/>
+            <Text style={{fontSize:18}}>{phoneNumber}</Text>
+            </TouchableOpacity>
+
+            <Text style={{fontWeight:'bold'}}>We Do What They Don't</Text>
+            <TouchableOpacity style={styles.closeButton} onPress={closeModal}>
+              <Text style={styles.closeButtonText}>Close</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal> 
+
+          {/*Settings */}
         <TouchableOpacity style={styles.touch} onPress={navigateToSettings}>
         <Icon name="cog" size={30} color="black" />
         <Text style={styles.text}>Settings</Text>
         <Icon style={{marginLeft:190}} name="angle-right" size={30} color="black" />
         </TouchableOpacity>
 
+          {/*LogOut */}
+          {/*Navigation to be done*/}
         <TouchableOpacity style={styles.touch}>
         <Icon name="sign-out" size={30} color="black" />
         <Text style={styles.text}>Logout</Text>
@@ -141,6 +203,51 @@ const styles = StyleSheet.create({
     paddingVertical:23,
     paddingLeft:12,
     borderBottomWidth:0.5,
-    
-   }
+   },
+
+   logo: {
+    width: 100,
+    height: 100,
+    marginBottom: 20,
+  },
+   
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.5)',
+  },
+  modalView: {
+    width: 300,
+    padding: 20,
+    backgroundColor: 'white',
+    borderRadius: 10,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: 'center',
+    fontSize: 18,
+    fontWeight:'bold'
+  },
+  closeButton: {
+    backgroundColor: '#2196F3',
+    borderRadius: 5,
+    padding: 10,
+  },
+  closeButtonText: {
+    color: 'white',
+    textAlign: 'center',
+    fontSize: 16,
+  },
+  modalImage:{
+    height:35,
+    width: 35,
+    borderRadius:15,
+  }
 });

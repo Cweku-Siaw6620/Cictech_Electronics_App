@@ -11,6 +11,8 @@ export default function SettingsScreen({navigation}) {
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
   const toggleThemeSwitch =()=> setIsThemeEnabled(previousState=> !previousState)
 
+  //Backend Devs must complete the functions of these toggles.
+  
   const navigateToAccountScreen =()=>{
     navigation.navigate('Account')
   }

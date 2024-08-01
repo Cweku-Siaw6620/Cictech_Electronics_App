@@ -23,7 +23,7 @@ function Home() {
                   <Ionicons name="home" size={size} color={color} />
                 ),
               }}
-               name='Home' component={HomeScreen}
+               name='HomeScreen' component={HomeScreen}
                />
 
               <Tabs.Screen  options={{
