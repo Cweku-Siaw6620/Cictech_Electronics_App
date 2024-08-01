@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View,Image, TouchableOpacity } from 'react-native';
-import { FlatList, ScrollView } from 'react-native-gesture-handler';
+import { FlatList} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/FontAwesome/';
 
 export default function RepairScreen({navigation}) {
 
-  const click = () => navigation.navigate('ProductDetail');
+  const click = () => navigation.navigate('RepairComponent');
   
   const getCurrentDate = () => {
     const date = new Date();

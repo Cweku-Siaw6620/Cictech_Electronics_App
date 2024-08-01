@@ -10,6 +10,8 @@ import { Ionicons } from '@expo/vector-icons';
 import ProductDetail from './Components/ProductDetail';
 import SettingsScreen from './Screens/SettingsScreen';
 import AccountDetail from './Components/AccountDetail';
+import TransactionScreen from './Components/TransactionScreen';
+import RepairComponent from './Components/RepairComponent';
 
 const Stack = createStackNavigator();
 const Tabs = createBottomTabNavigator();
@@ -75,6 +77,13 @@ export default function App() {
             />
              <Stack.Screen 
             name='Account' component={AccountDetail}
+            />
+            <Stack.Screen 
+            name='Transactions' component={TransactionScreen}
+            />
+            <Stack.Screen 
+            options={{headerShown:false}}
+            name='RepairComponent' component={RepairComponent}
             />
         </Stack.Navigator>
     </NavigationContainer>

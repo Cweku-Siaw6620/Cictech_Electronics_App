@@ -44,6 +44,13 @@ export default function Profile({navigation}) {
     navigation.navigate('HomeScreen')
   }
 
+  navigateToCart=()=>{
+    navigation.navigate('Cart')
+  }
+  navigateToTransaction=()=>{
+    navigation.navigate('Transactions')
+  }
+
   return (
     <>
     <View style={styles.header_container}>
@@ -59,19 +66,19 @@ export default function Profile({navigation}) {
     
       <View style={styles.ImageContainer}>
       <View>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={navigateToHomeScreen}>
         <Image style={styles.Image} source={require("../assets/home.jpg")}/>
         <Text style={{marginLeft:30,fontSize:10}}>Home</Text>
         </TouchableOpacity>
         </View>
         <View>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={navigateToCart}>
         <Image style={styles.Image} source={require("../assets/cart.jpg")}/>
         <Text style={{marginLeft:40,fontSize:10}}>Cart</Text>
         </TouchableOpacity>
         </View>
         <View style={{marginLeft:10}}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={navigateToTransaction}>
         <Image style={styles.Image} source={require("../assets/transaction.jpeg")}/>
         <Text style={{fontSize:10}}>Transactions</Text>
         </TouchableOpacity>
