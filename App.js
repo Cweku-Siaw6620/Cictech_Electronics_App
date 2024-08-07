@@ -12,6 +12,7 @@ import SettingsScreen from './Screens/SettingsScreen';
 import AccountDetail from './Components/AccountDetail';
 import TransactionScreen from './Components/TransactionScreen';
 import RepairComponent from './Components/RepairComponent';
+import OpenRepairs from './Components/OpenRepairs';
 
 const Stack = createStackNavigator();
 const Tabs = createBottomTabNavigator();
@@ -84,6 +85,10 @@ export default function App() {
             <Stack.Screen 
             options={{headerShown:false}}
             name='RepairComponent' component={RepairComponent}
+            />
+            <Stack.Screen 
+            options={{headerShown:false}}
+            name='OpenRepairs' component={OpenRepairs}
             />
         </Stack.Navigator>
     </NavigationContainer>
