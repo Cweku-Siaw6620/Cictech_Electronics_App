@@ -1,6 +1,8 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { View,Text,StyleSheet } from 'react-native';
 import WelcomeScreen from './Screens/WelcomeScreen';
 import HomeScreen from './Screens/HomeScreen';
 import CartScreen from './Screens/CartScreen';
@@ -12,9 +14,36 @@ import SettingsScreen from './Screens/SettingsScreen';
 import AccountDetail from './Components/AccountDetail';
 import TransactionScreen from './Components/TransactionScreen';
 import RepairComponent from './Components/RepairComponent';
+import OpenRepairs from './Components/OpenRepairs';
+import RepairForm from './Components/RepairForm';
 
 const Stack = createStackNavigator();
 const Tabs = createBottomTabNavigator();
+const TopTab = createMaterialTopTabNavigator();
+
+function RepairTabs(){
+  const getCurrentDate = () => {
+    const date = new Date();
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return date.toLocaleDateString(undefined, options);
+  };
+
+  return(
+    <View style={{flex:1}}>
+      <Text style={styles.dateText}>{getCurrentDate()}</Text>
+      {/*Input Customer's name here */}
+      <Text style={{fontSize:30,fontWeight:'bold',marginBottom:10 ,marginLeft:10}}>Hello .......</Text>
+
+      <View style={{flexDirection:'row',columnGap:80, marginLeft:10}}></View>
+      
+    <TopTab.Navigator>
+      <TopTab.Screen name='Repair' component={RepairScreen}/>
+      <TopTab.Screen name='OpenRepairs' component={OpenRepairs}/>
+
+    </TopTab.Navigator>
+    </View>
+  )
+}
 
 function Home() {
     return (
@@ -25,7 +54,7 @@ function Home() {
                   <Ionicons name="home" size={size} color={color} />
                 ),
               }}
-               name='HomeScreen' component={HomeScreen}
+               name='Home' component={HomeScreen}
                />
 
               <Tabs.Screen  options={{
@@ -43,7 +72,7 @@ function Home() {
                 ),
               }}
               name='Repairs' 
-              component={RepairScreen}
+              component={RepairTabs}
               />
 
               <Tabs.Screen  options={{
@@ -85,7 +114,18 @@ export default function App() {
             options={{headerShown:false}}
             name='RepairComponent' component={RepairComponent}
             />
+             <Stack.Screen 
+            name='RepairForm' component={RepairForm}
+            />
         </Stack.Navigator>
     </NavigationContainer>
 )
 }
+
+const styles = StyleSheet.create({
+  dateText: {
+    fontSize: 15,
+    marginTop: 40,
+    marginLeft:10
+  },
+})

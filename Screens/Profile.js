@@ -41,7 +41,7 @@ export default function Profile({navigation}) {
   }
   
   navigateToHomeScreen=()=>{
-    navigation.navigate('HomeScreen')
+    navigation.navigate('Home')
   }
 
   navigateToCart=()=>{
