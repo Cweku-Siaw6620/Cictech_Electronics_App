@@ -5,52 +5,50 @@ import Icon from 'react-native-vector-icons/FontAwesome/';
 export default function RepairScreen({navigation}) {
 
   const click = () => navigation.navigate('RepairComponent');
-  
-  const getCurrentDate = () => {
-    const date = new Date();
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    return date.toLocaleDateString(undefined, options);
-  };
 
+  const machineNames = (["HP repairs","DELL repairs","Lenovo repairs",
+                  "MacOs repairs",'Acer repairs','Asus repairs',
+                  'Monitor repairs','System Unit repairs' ])
+  
   const Images =[
     {
       id:1,
-      name:'Hp repairs',
+      machineName: machineNames[0],
       Image: require("../assets/hp-logo.jpeg")
     },
     {
       id:2,
-      name:'DELL repairs',
+      machineName:machineNames[1],
       Image: require("../assets/dell-logo.jpeg")
     },
     {
       id:3,
-      name:'Lenovo repairs',
+      machineName: machineNames[2],
       Image: require("../assets/lenovo-logo.jpeg")
     },
     {
       id:4,
-      name:'MacOs repairs',
+      machineName: machineNames[3],
       Image: require("../assets/apple-logo.jpeg")
     },
     {
       id:5,
-      name:'Acer repairs',
+      machineName: machineNames[4],
       Image: require("../assets/acer-logo.jpeg")
     },
     {
       id:6,
-      name:'Asus repairs',
+      machineName: machineNames[5],
       Image: require("../assets/asus-logo.jpeg")
     },
     {
       id:7,
-      name:'Monitor repairs',
+      machineName: machineNames[6],
       Image: require("../assets/monitor.jpeg")
     },
     {
       id:8,
-      name:'System Unit repairs',
+      machineName: machineNames[7],
       Image: require("../assets/system-unit.jpeg")
     },
   ];
@@ -58,11 +56,6 @@ export default function RepairScreen({navigation}) {
 
   return (
     <View style={styles.container}>
-   
-      <Text style={styles.dateText}>{getCurrentDate()}</Text>
-      {/*Input Customer's name here */}
-      <Text style={{fontSize:30,fontWeight:'bold',marginBottom:50 ,marginLeft:10}}>Hello .......</Text>
-
       <View style={{flexDirection:'row',columnGap:80, marginLeft:10}}>
       <Text style={{fontWeight:'bold'}}>CICTECH LAPTOP REPAIRS </Text>
       <Icon name="angle-right" size={30} color="black"/>
@@ -79,7 +72,7 @@ export default function RepairScreen({navigation}) {
                 </TouchableOpacity>
                 
                 <View style={{flexDirection:"row",columnGap:40}}>
-                <Text style={{fontWeight:'bold'}}>{item.name}</Text>
+                <Text style={{fontWeight:'bold'}}>{item.machineName}</Text>
                </View>
               </View>
             )}
@@ -93,7 +86,7 @@ export default function RepairScreen({navigation}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop:30,
+    marginTop:10,
     marginBottom:5
   },
   dateText: {
