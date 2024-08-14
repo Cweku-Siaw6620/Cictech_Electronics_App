@@ -2,13 +2,13 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { View,Text,StyleSheet } from 'react-native';
+import { View,Text,StyleSheet, Platform,  } from 'react-native';
 import WelcomeScreen from './Screens/WelcomeScreen';
 import HomeScreen from './Screens/HomeScreen';
 import CartScreen from './Screens/CartScreen';
 import Profile from './Screens/Profile';
 import RepairScreen from './Screens/RepairScreen';
-import { Ionicons } from '@expo/vector-icons';
+import { Fontisto, Ionicons } from '@expo/vector-icons';
 import ProductDetail from './Components/ProductDetail';
 import SettingsScreen from './Screens/SettingsScreen';
 import AccountDetail from './Components/AccountDetail';
@@ -16,6 +16,9 @@ import TransactionScreen from './Components/TransactionScreen';
 import RepairComponent from './Components/RepairComponent';
 import OpenRepairs from './Components/OpenRepairs';
 import RepairForm from './Components/RepairForm';
+import Checkout from './Components/Checkout';
+import { TouchableHighlight } from 'react-native-gesture-handler';
+import { color } from 'react-native-elements/dist/helpers';
 
 const Stack = createStackNavigator();
 const Tabs = createBottomTabNavigator();
@@ -65,7 +68,7 @@ function Home() {
               }} 
               name='Cart' component={CartScreen}/>
 
-              <Tabs.Screen  options={{
+              {/*<Tabs.Screen  options={{
                 headerShown:false,
                 tabBarIcon: ({ color, size }) => (
                   <Ionicons name="laptop" size={size} color={color} />
@@ -73,12 +76,49 @@ function Home() {
               }}
               name='Repairs' 
               component={RepairTabs}
+              />*/}
+
+              <Tabs.Screen
+                name='Repairs' 
+                component={RepairTabs}
+                options={{
+                 headerShown:false,
+                  tabBarIcon:({focused})=>{
+                    return(
+                      <View style={{
+                        alignItems:"center",
+                        justifyContent:"center",
+                        backgroundColor: 'white',
+                        height: Platform.OS =='ios'? 50 : 60,
+                        width: Platform.OS =='ios'? 50 : 60,
+                        top: Platform.OS =='ios'? -10 : -20,
+                        borderRadius: Platform.OS =='ios'? 25 : 30,
+                        borderWidth:2,
+                        borderColor:'brown',
+                      }}>
+                        <TouchableHighlight onPress={color}>
+                        <Fontisto
+                        name='laptop'
+                        size={24}
+                        color={'gray'}
+                        />
+                        </TouchableHighlight>
+                      </View>
+                    )}
+                }}
               />
+              <Tabs.Screen  options={{
+                 headerShown:false,
+                tabBarIcon: ({ color, size }) => (
+                  <Ionicons name="cash" size={size} color={color} />
+                ),
+              }} 
+              name='CheckOut' component={Checkout}/>
 
               <Tabs.Screen  options={{
                  headerShown:false,
                 tabBarIcon: ({ color, size }) => (
-                  <Ionicons name="man" size={size} color={color} />
+                  <Ionicons name="person-outline" size={size} color={color} />
                 ),
               }} 
               name='Profile' component={Profile}/>
