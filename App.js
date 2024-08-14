@@ -17,8 +17,6 @@ import RepairComponent from './Components/RepairComponent';
 import OpenRepairs from './Components/OpenRepairs';
 import RepairForm from './Components/RepairForm';
 import Checkout from './Components/Checkout';
-import { TouchableHighlight } from 'react-native-gesture-handler';
-import { color } from 'react-native-elements/dist/helpers';
 
 const Stack = createStackNavigator();
 const Tabs = createBottomTabNavigator();
@@ -96,13 +94,12 @@ function Home() {
                         borderWidth:2,
                         borderColor:'brown',
                       }}>
-                        <TouchableHighlight onPress={color}>
+                        
                         <Fontisto
                         name='laptop'
                         size={24}
                         color={'gray'}
                         />
-                        </TouchableHighlight>
                       </View>
                     )}
                 }}
@@ -138,7 +135,6 @@ export default function App() {
             name='HomeComponent' component={Home}
             />
             <Stack.Screen 
-            options={{headerShown:false}}
             name='ProductDetail' component={ProductDetail}
             />
              <Stack.Screen 
