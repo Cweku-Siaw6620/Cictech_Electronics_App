@@ -165,8 +165,8 @@ export default function Profile({navigation}) {
         </View>
         </View>
         
-        <View style={{flexDirection:"row",marginTop:20, alignItems:"center"}}>
-        <Image style={{height:100,width: 100,}} source={require("../assets/logo.jpg")}/>
+        <View style={{marginTop:20, alignItems:"center"}}>
+        <Image source={require("../assets/logo.jpg")}/>
         <Text style={styles.text}>We do what they don't</Text>
         </View>
 
