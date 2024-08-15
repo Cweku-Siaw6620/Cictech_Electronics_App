@@ -28,6 +28,9 @@ export default function ProductCard({ products, addToCart, onProductPress }) {
               {item.price !== undefined ? `$${parseFloat(item.price).toFixed(2)}` : 'N/A'}
             </Text>
             </TouchableOpacity>
+            <TouchableOpacity onPress={() => addToCart(item)}>
+              <Image source={require("../assets/add_circle.png")} style={{height:40, width:40}}/>
+            </TouchableOpacity>
           </View>
         )}
         contentContainerStyle={{ paddingBottom: 105 }} // Adjust padding to prevent overlap with other content
@@ -38,32 +41,21 @@ export default function ProductCard({ products, addToCart, onProductPress }) {
 
 const styles = StyleSheet.create({
   container: {
-    
-    padding: 10,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: 'white',
   },
   productContainer: {
     flex: 1,
-    margin: 10,
+    margin: 3,
     backgroundColor: '#fff',
     borderRadius: 10,
     padding: 10,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 5,
-    elevation: 3,
+    elevation: 2,
   },
   productImage: {
     width: '100%',
     height: 150,
     resizeMode: 'cover',
     borderRadius: 10,
-  },
-  productName: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginVertical: 5,
   },
   productDescription: {
     fontSize: 14,
@@ -74,12 +66,5 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#888',
     marginBottom: 10,
-  },
-  addToCartButton: {
-    alignItems: 'center',
-  },
-  addToCartIcon: {
-    height: 40,
-    width: 40,
   },
 });

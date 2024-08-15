@@ -17,6 +17,8 @@ import RepairComponent from './Components/RepairComponent';
 import OpenRepairs from './Components/OpenRepairs';
 import RepairForm from './Components/RepairForm';
 import Checkout from './Components/Checkout';
+import { CartProvider } from './Components/CartProvider'; // Adjust the path to your CartContext file
+
 
 const Stack = createStackNavigator();
 const Tabs = createBottomTabNavigator();
@@ -125,6 +127,7 @@ function Home() {
 
 export default function App() {
   return(
+    <CartProvider>
     <NavigationContainer>
         <Stack.Navigator initialRouteName='Welcome'>
             <Stack.Screen
@@ -155,6 +158,7 @@ export default function App() {
             />
         </Stack.Navigator>
     </NavigationContainer>
+    </CartProvider>
 )
 }
 
