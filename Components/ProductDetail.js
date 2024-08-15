@@ -7,14 +7,13 @@ const {product} = route.params;
   return (
     <>
    <ScrollView style={styles.container}>    
-
+    
         <Image source={{uri: product.image}} style={styles.image}/>
         <Text style={styles.names}>{product.title}</Text>
         <Text style={styles.price}>${product.price}</Text>
         <Text style={styles.description}>{product.description}</Text>
+        
                 
-        
-        
    </ScrollView>
    </>
   );
@@ -40,34 +39,11 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     marginBottom: 20,
   },
-  names:{
-    marginTop: 10,
-    fontSize: 24,
-    fontWeight:"bold",
-  },
   price:{
     fontSize: 20,
     fontWeight: 'bold',
     color: '#ff5252',
     marginBottom: 20,
   },
-  material: {
-    marginTop: 25,
-    fontWeight: 'bold',
-    fontSize: 22,
-  },
-  whiteIcon: {
-    tintColor: 'white',
-    width: 24,
-    height: 24,
-},
-addToBasketContainer: {
-    backgroundColor: 'black',
-    height: 50,
-    position: 'relative',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-    flexDirection: 'row',
-},
-
+ 
 });
