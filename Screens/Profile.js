@@ -1,14 +1,26 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import { ImageBackground, StyleSheet, Text, View, Image, TouchableOpacity, Linking, Modal} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 
-export default function Profile({navigation}) {
+export default function Profile({navigation,route}) {
   const [modalVisible, setModalVisible] = useState(false);
   const phoneNumber = '0249509090';
   const countryCode = '233';
   const whatsappURL = `whatsapp://send?phone=${countryCode}${phoneNumber}`;
+  //Login in codes
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [profileImage, setProfileImage] = useState(null);
+  const [username, setUsername] = useState('');
+
+  useEffect(() => {
+    if (route.params?.username && route.params?.profileImage) {
+      setUsername(route.params.username);
+      setProfileImage(route.params.profileImage);
+      setIsLoggedIn(true);
+    }
+  }, [route.params]);
 
   const openModal = () => {
     setModalVisible(true);
@@ -51,16 +63,43 @@ export default function Profile({navigation}) {
     navigation.navigate('Transactions')
   }
 
+  const navigateToAccountScreen =()=>{
+    navigation.navigate('Account')
+  }
+  
+  const navigateToLogin =()=>{
+    navigation.navigate('LoginScreen')
+  }
+
   return (
     <>
     <View style={styles.header_container}>
       <Text>Profile</Text>
     </View>
     <ScrollView style={{flex:1}}>
-     <ImageBackground 
-    style={{height:300}}
-    source={require("../assets/profile-background.jpg")}>
-      {/* code goes here for profile*/}
+<ImageBackground 
+      style={styles.backgroundImage}
+      source={require('../assets/profile-background.jpg')}
+    >
+      {isLoggedIn ? (
+        <>
+        <TouchableOpacity onPress={navigateToAccountScreen}>
+          <Image source={{ uri: profileImage }} style={styles.profileImage} />
+          <Text style={styles.buttonText}>{username}</Text>
+          </TouchableOpacity>
+          {/*<Button title="Log Out" onPress={handleLogout} />*/}
+        </>
+      ) : (
+        <View style={styles.overlayContainer}>
+        <TouchableOpacity style={styles.button} onPress={navigateToLogin}>
+          <Image 
+            source={require('../assets/person-outline.png')} 
+            style={styles.profileImage} 
+          />
+          <Text style={styles.buttonText}>Login to View</Text>
+        </TouchableOpacity>
+      </View>
+      )}
     </ImageBackground>
     
     
@@ -185,6 +224,39 @@ const styles = StyleSheet.create({
     backgroundColor:"green",
     padding:20
   },
+  backgroundImage: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    resizeMode: 'cover', 
+    height:200
+  },
+  overlayContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 20,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', 
+    borderRadius: 10,
+  },
+  button: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  profileImage: {
+    width: 100,
+    height: 100,
+    borderRadius: 50, 
+    marginBottom: 10,
+    borderWidth: 2,
+    borderColor: '#fff', 
+  },
+  buttonText: {
+    color: '#fff', 
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+
   ImageContainer:{
     alignItems:'center',
     flexDirection:'row',

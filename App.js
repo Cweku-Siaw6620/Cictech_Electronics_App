@@ -1,3 +1,4 @@
+import { useState,useEffect } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -18,13 +19,26 @@ import OpenRepairs from './Components/OpenRepairs';
 import RepairForm from './Components/RepairForm';
 import Checkout from './Components/Checkout';
 import { CartProvider } from './Components/CartProvider'; // Adjust the path to your CartContext file
+import RegisterScreen from './Screens/RegisterScreen';
+import LoginScreen from './Screens/LoginScreen';
+import ProfilePictureScreen from './Screens/ProfilePictureScreen';
 
 
 const Stack = createStackNavigator();
 const Tabs = createBottomTabNavigator();
 const TopTab = createMaterialTopTabNavigator();
 
-function RepairTabs(){
+function RepairTabs({route}){
+  const [username, setUsername] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    if (route.params?.username) {
+      setUsername(route.params.username);
+      setIsLoggedIn(true);
+    }
+  }, [route.params]);
+
   const getCurrentDate = () => {
     const date = new Date();
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -35,7 +49,15 @@ function RepairTabs(){
     <View style={{flex:1}}>
       <Text style={styles.dateText}>{getCurrentDate()}</Text>
       {/*Input Customer's name here */}
-      <Text style={{fontSize:30,fontWeight:'bold',marginBottom:10 ,marginLeft:10}}>Hello .......</Text>
+
+      {isLoggedIn ? (
+        <>
+         <Text style={{fontSize:30,fontWeight:'bold',marginBottom:10 ,marginLeft:10}}>Hello {username}</Text>
+          {/*<Button title="Log Out" onPress={handleLogout} />*/}
+        </>
+      ) : (
+        <Text style={{fontSize:30,fontWeight:'bold',marginBottom:10 ,marginLeft:10}}>Hello .......</Text>
+      )}
 
       <View style={{flexDirection:'row',columnGap:80, marginLeft:10}}></View>
       
@@ -155,6 +177,18 @@ export default function App() {
             />
              <Stack.Screen 
             name='RepairForm' component={RepairForm}
+            />
+            <Stack.Screen 
+            options={{headerShown:false}}
+            name='RegisterScreen' component={RegisterScreen}
+            />
+            <Stack.Screen 
+            options={{headerShown:false}}
+            name='LoginScreen' component={LoginScreen}
+            />
+            <Stack.Screen 
+            options={{headerShown:false}}
+            name='ProfilePicture' component={ProfilePictureScreen}
             />
         </Stack.Navigator>
     </NavigationContainer>

@@ -5,6 +5,7 @@ import { StyleSheet, Text, View, Image, TouchableOpacity, } from 'react-native';
 import ProductCard from '../Components/ProductCard';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useCart } from '../Components/CartProvider'; // Adjust the path to your CartContext file
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 
 const TopTab = createMaterialTopTabNavigator();
@@ -99,14 +100,48 @@ export const getCartItems = async () => {
 
 
   //Main HomeScreen
-  export default function HomeScreen(){
+  export default function HomeScreen({navigation, route}){
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [profileImage, setProfileImage] = useState(null);
+    const [username, setUsername] = useState('');
+  
+    useEffect(() => {
+      if (route.params?.username && route.params?.profileImage) {
+        setUsername(route.params.username);
+        setProfileImage(route.params.profileImage);
+        setIsLoggedIn(true);
+      }
+    }, [route.params]);
+  
+   /* const handleLogout = () => {
+      setIsLoggedIn(false);
+      setProfileImage(null);
+      setUsername('');
+      navigation.navigate('SignUp'); // Optionally, navigate back to the signup screen
+    };*/
+    
+    const login =()=>{
+      navigation.navigate('LoginScreen')
+    }
+
     return(
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
     <View style={{flexDirection:'row', columnGap:50}} >
       <Image source={require("../assets/logo.jpg")}/>
-      <TouchableOpacity>
+
+
+      {isLoggedIn ? (
+        <>
+          <Image source={{ uri: profileImage }} style={styles.profileImage} />
+          <Text style={styles.welcomeText}>{username}!</Text>
+          {/*<Button title="Log Out" onPress={handleLogout} />*/}
+        </>
+      ) : (
+        <TouchableOpacity onPress={login}>
       <Text style={{marginTop:20, fontWeight:'bold'}}>SignIn/SignUp</Text>
       </TouchableOpacity>
+      )}
+      
     </View>
 
       <TopTab.Navigator
@@ -124,7 +159,7 @@ export const getCartItems = async () => {
       <TopTab.Screen name='Lenovo' component={DisplayLenovoMachines}/>
 
     </TopTab.Navigator>
-    </View>
+    </SafeAreaView>
     )
   }
 
@@ -132,7 +167,17 @@ export const getCartItems = async () => {
     container: {
       flex: 1,
       backgroundColor:"white",
-      marginTop:35,
+      marginTop:4,
       
+    },
+    profileImage: {
+      width: 100,
+      height: 100,
+      borderRadius: 75,
+      marginBottom: 16,
+    },
+    welcomeText: {
+      fontSize: 24,
+      marginBottom: 16,
     },
   });
