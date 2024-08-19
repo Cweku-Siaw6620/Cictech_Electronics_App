@@ -20,7 +20,6 @@ const WelcomeScreen = ({ navigation }) => {
   return (
     <Animated.View style={[styles.container, { opacity }]}>
       <Image source={require('../assets/logo.jpg')} style={styles.logo} />
-      <Text style={styles.text}>CICTECH</Text>
     </Animated.View>
   );
 };
@@ -34,10 +33,6 @@ const styles = StyleSheet.create({
   },
   logo: {
     marginBottom: 20,
-  },
-  text: {
-    fontSize: 24,
-    fontWeight: 'bold',
   },
 });
 

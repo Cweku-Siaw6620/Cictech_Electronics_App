@@ -29,12 +29,11 @@ export const getCartItems = async () => {
 };
 
 //All stocks tab
- function AllScreen({navigation}) {
+ export function AllScreen({navigation}) {
   const [products, setProducts] = useState([]);
   const [cartItems, setCartItems] = useState([]);
   const { addToCart } = useCart(); // Get the addToCart function from context
 
-  
   useEffect(() => {
     const fetchProducts = async () => {
       const response = await axios.get('https://fakestoreapi.com/products');
@@ -50,9 +49,7 @@ export const getCartItems = async () => {
 
     fetchProducts();
     loadCartItems();
-  },[])
-
-   
+  },[])  
   return(
     <View>
         <ProductCard 

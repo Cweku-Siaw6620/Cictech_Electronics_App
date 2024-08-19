@@ -134,7 +134,7 @@ function Home() {
                   <Ionicons name="cash" size={size} color={color} />
                 ),
               }} 
-              name='CheckOut' component={Checkout}/>
+              name='Bidding' component={Profile}/>
 
               <Tabs.Screen  options={{
                  headerShown:false,
@@ -189,6 +189,9 @@ export default function App() {
             <Stack.Screen 
             options={{headerShown:false}}
             name='ProfilePicture' component={ProfilePictureScreen}
+            />
+            <Stack.Screen 
+            name='Checkout' component={Checkout}
             />
         </Stack.Navigator>
     </NavigationContainer>
