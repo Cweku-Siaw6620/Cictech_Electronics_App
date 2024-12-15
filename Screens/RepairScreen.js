@@ -1,9 +1,8 @@
 import { StyleSheet, Text, View,Image, TouchableOpacity } from 'react-native';
 import { FlatList} from 'react-native-gesture-handler';
-import Icon from 'react-native-vector-icons/FontAwesome/';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default function RepairScreen({navigation}) {
-
   const click = () => navigation.navigate('RepairComponent');
 
   const machineNames = (["HP repairs","DELL repairs","Lenovo repairs",

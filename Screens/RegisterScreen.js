@@ -1,67 +1,46 @@
 import {Image, Alert, Pressable, SafeAreaView, StyleSheet, Text, TextInput, View, ScrollView} from 'react-native';
 import React, {useState} from 'react';
-import {AntDesign, Ionicons, MaterialIcons} from "@expo/vector-icons";
+import {AntDesign, MaterialIcons} from "@expo/vector-icons";
 import {useNavigation} from "@react-navigation/native";
+import axios from "axios";
 
 const RegisterScreen = () => {
-    const [name, setName] = useState("");
     const [username, setUsername] = useState("");
-    const [phoneNumber, setPhoneNumber]= useState();
+    const [phoneNumber, setPhoneNumber]= useState("");
+    const [email, setEmail]= useState("");
     const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword]= useState("");
     const navigation = useNavigation();
     
-    const handleSignUp = () => {
-        /*if(!name||!username||!phoneNumber||!password||!confirmPassword){
-            Alert.alert('Fill all spaces', 'Please fill out all fields before submitting.');
-          } 
-       else*/ if (password !== confirmPassword) {
-          Alert.alert('Error', 'Passwords do not match!');
-        } else {
-            navigation.navigate('ProfilePicture', { username });
-          }
-      };
+    const handleSignUp = async() => {
+      
+                const url = "https://cictech-api-rc4r.onrender.com/users";
+                let result = await fetch(url,{
+                    method:"POST",
+                    headers:{"Content-Type":"application/json"},
+                    body: JSON.stringify({username:username,email:email,phoneNumber:phoneNumber,password:password})
+                });
+                result = await result.json();
+               /* if(result.status==201){
+                   Alert.alert('Data is saved,')
+                }else {
+                    Alert.alert("Error", "Registration failed!");
+                  }*/
+                  navigation.navigate('ProfilePicture', { username });
+            }
+    
+    
 
     return (
-        <SafeAreaView style={{flex: 1, backgroundColor: "white", alignItems: "center"}}>
-            <View>
+      <SafeAreaView style={{flex: 1, backgroundColor: "white", alignItems: "center"}}>
+             <View>
                 <Image
                 style={{ marginTop: 30}}
                     source={require("../assets/logo.jpg")}
                 />
             </View>
+
             <ScrollView>
-                <View>
-                    <Text style={{fontSize:17, fontWeight:"bold",marginTop:12,color:"#041E42",alignSelf:"center"}}>Register a new Account</Text>
-                </View>
-
-                <View style={{marginTop: 30}}>
-                    <View
-                        style={{
-                            flexDirection: "row",
-                            alignItems: "center",
-                            gap:5,
-                            backgroundColor: "#D0D0D0D0",
-                            paddingVertical: 5,
-                            borderRadius:5,
-                            marginTop:30
-                        }}>
-                        <Ionicons name={"person"}
-                                  size={24}
-                                  color={"gray"}
-                                  style={{marginLeft: 8}}  />
-                        <TextInput
-                            value={name}
-                            onChangeText={(text) => setName(text)}
-                            style={{color:"gray",
-                                marginVertical:10,
-                                width:300,
-                                fontSize:name ? 16 : 16}}
-                            placeholder={"Enter your Full Name"}/>
-                    </View>
-
-                </View>
-
+{/*Full Name*/}
                 <View style={{marginTop: 10}}>
                     <View
                         style={{
@@ -88,6 +67,34 @@ const RegisterScreen = () => {
                     </View>
                 </View>
 
+{/*Email*/}
+                <View style={{marginTop: 10}}>
+                    <View
+                        style={{
+                            flexDirection: "row",
+                            alignItems: "center",
+                            gap:5,
+                            backgroundColor: "#D0D0D0D0",
+                            paddingVertical: 5,
+                            borderRadius:5,
+                            marginTop:30
+                        }}>
+                        <MaterialIcons style={{
+                            marginLeft:8,
+                            color:"gray"}} name={"mail"} size={24} color={"black"}/>
+                        <TextInput
+                            value={email}
+                            onChangeText={(text) => setEmail(text)}
+                            style={{
+                                color:"gray",
+                                marginVertical:10,
+                                width:300,
+                                fontSize:email ? 16 : 16}}
+                            placeholder={"Email"}/>
+                    </View>
+                </View>
+
+{/*Phone Number*/}
                 <View style={{marginTop: 10}}>
                     <View
                         style={{
@@ -104,7 +111,7 @@ const RegisterScreen = () => {
                             color:"gray"}} name={"phone"} size={24} color={"black"}/>
                         <TextInput
                             value={phoneNumber}
-                            onChangeText={(number) => setPhoneNumber(number)}
+                            onChangeText={(text) => setPhoneNumber(text)}
                             style={{
                                 color:"gray",
                                 marginVertical:10,
@@ -115,6 +122,7 @@ const RegisterScreen = () => {
                     </View>
                 </View>
 
+{/*Password*/}
                 <View style={{marginTop:10}}>
                     <View
                         style={{
@@ -141,38 +149,13 @@ const RegisterScreen = () => {
                     </View>
                 </View>
 
-                <View style={{marginTop:10}}>
-                    <View
-                        style={{
-                            flexDirection: "row",
-                            alignItems: "center",
-                            gap:5,
-                            backgroundColor: "#D0D0D0D0",
-                            paddingVertical: 5,
-                            borderRadius:5,
-                            marginTop:30
-                        }}>
-                        <AntDesign style={{marginLeft:8,
-                            color:"gray"}} name={"lock1"} size={24} color={"gray"}/>
-                        <TextInput
-                            value={confirmPassword}
-                            onChangeText={(text) => setConfirmPassword(text)}
-                            secureTextEntry={true}
-                            style={{
-                                color:"gray",
-                                marginVertical:10,
-                                width:300,
-                                fontSize:confirmPassword ? 16 : 16}}
-                            placeholder={"Confirm Password"}/>
-                    </View>
-                </View>
-
                 <View style={{
                     marginTop:12,
                     flexDirection: "row",
                     alignItems: "center",
                     justifyContent:"space-between"}}>
                     <Text>Keep me logged in</Text>
+                    
 
                     <Text style={{color:"#007FFF",fontWeight:"500"}}>Forgot Password</Text>
                 </View>
@@ -204,4 +187,4 @@ const RegisterScreen = () => {
 
 export default RegisterScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({})

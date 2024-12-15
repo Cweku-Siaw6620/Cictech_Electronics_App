@@ -22,6 +22,9 @@ import { CartProvider } from './Components/CartProvider'; // Adjust the path to 
 import RegisterScreen from './Screens/RegisterScreen';
 import LoginScreen from './Screens/LoginScreen';
 import ProfilePictureScreen from './Screens/ProfilePictureScreen';
+import PlaceOrder from './Components/PlaceOrder';
+import PaymentMethodScreen from './Components/PaymentMethod';
+import ConfirmationScreen from './Components/ConfirmationScreen';
 
 
 const Stack = createStackNavigator();
@@ -70,6 +73,7 @@ function RepairTabs({route}){
   )
 }
 
+//ButtomTab Navigation
 function Home() {
     return (
           <Tabs.Navigator initialRouteName='Home'>
@@ -89,16 +93,6 @@ function Home() {
                 ),
               }} 
               name='Cart' component={CartScreen}/>
-
-              {/*<Tabs.Screen  options={{
-                headerShown:false,
-                tabBarIcon: ({ color, size }) => (
-                  <Ionicons name="laptop" size={size} color={color} />
-                ),
-              }}
-              name='Repairs' 
-              component={RepairTabs}
-              />*/}
 
               <Tabs.Screen
                 name='Repairs' 
@@ -192,6 +186,15 @@ export default function App() {
             />
             <Stack.Screen 
             name='Checkout' component={Checkout}
+            />
+            <Stack.Screen 
+            name='Place an Order' component={PlaceOrder}
+            />
+            <Stack.Screen 
+            name='PaymentMethodScreen' component={PaymentMethodScreen}
+            />
+            <Stack.Screen 
+            name='ConfirmationScreen' component={ConfirmationScreen}
             />
         </Stack.Navigator>
     </NavigationContainer>

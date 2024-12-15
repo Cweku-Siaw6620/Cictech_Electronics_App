@@ -2,7 +2,7 @@ import React from 'react';
 import { FlatList, Image, StyleSheet, Text, View,TouchableOpacity } from 'react-native';
 import { useRoute } from '@react-navigation/native'; // To access passed parameters
 
-export default function Checkout() {
+export default function Checkout({navigation}) {
   const route = useRoute();
   const { cartItems } = route.params; // Get cartItems from route parameters
 
@@ -33,7 +33,7 @@ export default function Checkout() {
         <Text style={styles.totalLabel}>Est. Total:</Text>
         <Text style={styles.totalValue}>${calculateTotal()}</Text>
       </View>
-      <TouchableOpacity style={styles.checkoutButton} /*onPress={() => navigation.navigate('Checkout', { cartItems })}*/>
+      <TouchableOpacity style={styles.checkoutButton}  onPress={() => navigation.navigate('Place an Order', { cartItems })}>
         <Text style={styles.checkoutButtonText}>Place order</Text>
       </TouchableOpacity>
       {/* You can add your payment process here */}

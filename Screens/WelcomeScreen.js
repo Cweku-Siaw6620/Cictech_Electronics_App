@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, Text, Image, StyleSheet, Animated } from 'react-native';
+import { Image, StyleSheet, Animated } from 'react-native';
 
 const WelcomeScreen = ({ navigation }) => {
   const opacity = new Animated.Value(1);

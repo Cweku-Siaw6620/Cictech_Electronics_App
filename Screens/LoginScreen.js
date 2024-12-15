@@ -4,7 +4,7 @@ import {AntDesign, MaterialIcons} from "@expo/vector-icons";
 import {useNavigation} from "@react-navigation/native";
 
 const LoginScreen = () => {
-    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigation = useNavigation();
     return (
@@ -33,12 +33,12 @@ const LoginScreen = () => {
                     }}>
                         <MaterialIcons style={{
                             marginLeft:8,
-                            color:"gray"}} name={"person-outline"} size={24} color={"black"}/>
+                            color:"gray"}} name={"mail"} size={24} color={"black"}/>
                         <TextInput
-                            value={username}
-                            onChangeText={(text) => setUsername(text)}
-                            style={{color:"gray", marginVertical:10,width:300,fontSize:username ? 16 : 16}}
-                            placeholder={"Enter username"}/>
+                            value={email}
+                            onChangeText={(text) => setEmail(text)}
+                            style={{color:"gray", marginVertical:10,width:300,fontSize:email ? 16 : 16}}
+                            placeholder={"Enter Email"}/>
                     </View>
 
                 </View>
@@ -65,7 +65,7 @@ const LoginScreen = () => {
                                 marginVertical:10,
                                 width:300,
                                 fontSize:password ? 16 : 16}}
-                            placeholder={"enter your Password"}/>
+                            placeholder={"Enter your Password"}/>
                     </View>
 
 
@@ -107,4 +107,6 @@ const LoginScreen = () => {
 
 export default LoginScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+    
+});
