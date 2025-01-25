@@ -36,7 +36,7 @@ export const getCartItems = async () => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const response = await axios.get('https://fakestoreapi.com/products');
+      const response = await axios.get('https://cictech-api-rc4r.onrender.com/products');
       setProducts(response.data);
     };
      
@@ -62,21 +62,123 @@ export const getCartItems = async () => {
 
 
   //HPScreen
-  function DisplayHpMachines(){
-    return(
+  function DisplayHpMachines({navigation}) {
+    const [products, setProducts] = useState([]);
+    const [cartItems, setCartItems] = useState([]);
+    const { addToCart } = useCart(); // Get the addToCart function from context
+  
+    useEffect(() => {
+      const fetchHPProducts = async () => {
+        try {
+          const response = await axios.get('https://cictech-api-rc4r.onrender.com/products/brand/HP');
+          const hpProducts = response.data.filter(product => product.brand === "HP"); // Filter locally
+          setProducts(hpProducts);
+        } catch (error) {
+          console.error("Error fetching HP products:", error);
+        }
+      };
+
+      const loadCartItems = async () => {
+        const items = await getCartItems();
+        if (items) {
+          setCartItems(items);
+        }
+      };
+  
+      fetchHPProducts();
+      loadCartItems();
+    }, []);
+  
+    return (
       <View>
-        <Text>HPScreen</Text>
+        <ProductCard 
+          products={products}
+          addToCart={addToCart}
+          onProductPress={(product) => navigation.navigate('ProductDetail', { product })}
+        />
       </View>
-    )
+    );
   }
-  //DellScreen
-  function DisplayDellMachines(){
-    return(
+
+  //Dell Screen
+  function DisplayDellMachines() {
+    const [products, setProducts] = useState([]);
+    const [cartItems, setCartItems] = useState([]);
+    const { addToCart } = useCart(); 
+  
+    useEffect(() => {
+      const fetchDellProducts = async () => {
+        try {
+          const response = await axios.get('https://cictech-api-rc4r.onrender.com/products');
+          const dellProducts = response.data.filter(product => product.brand === "Dell");
+          setProducts(dellProducts);
+        } catch (error) {
+          console.error("Error fetching Dell products:", error);
+        }
+      };
+
+      const loadCartItems = async () => {
+        const items = await getCartItems();
+        if (items) {
+          setCartItems(items);
+        }
+      };
+  
+      fetchDellProducts();
+      loadCartItems();
+    }, []);
+  
+    return (
       <View>
-        <Text>Dell Screen</Text>
+        <ProductCard 
+          products={products}
+          addToCart={addToCart}
+          onProductPress={(product) => navigation.navigate('ProductDetail', { product })}
+        />
       </View>
-    )
+    );
   }
+
+
+//Lenovo
+function DisplayLenovoMachines() {
+  const [products, setProducts] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
+  const { addToCart } = useCart(); 
+
+  useEffect(() => {
+    const fetchLenovoProducts = async () => {
+      try {
+        const response = await axios.get('https://cictech-api-rc4r.onrender.com/products');
+        const lenovoProducts = response.data.filter(product => product.brand === "Lenovo");
+        setProducts(lenovoProducts);
+      } catch (error) {
+        console.error("Error fetching Lenovo products:", error);
+      }
+    };
+
+    const loadCartItems = async () => {
+      const items = await getCartItems();
+      if (items) {
+        setCartItems(items);
+      }
+    };
+
+    fetchLenovoProducts();
+    loadCartItems();  
+  }, []);
+
+  return (
+    <View>
+      <ProductCard 
+        products={products}
+        addToCart={addToCart}
+        onProductPress={(product) => navigation.navigate('ProductDetail', { product })}
+      />
+    </View>
+  );
+}
+
   //MacScreen
   function DisplayMacMachines(){
     return(
@@ -85,15 +187,6 @@ export const getCartItems = async () => {
       </View>
     )
   }
-  //Lenovo
-  function DisplayLenovoMachines(){
-    return(
-      <View>
-        <Text>Lenovo Screen</Text>
-      </View>
-    )
-  }
-  
 
 
   //Main HomeScreen
@@ -152,8 +245,9 @@ export const getCartItems = async () => {
       <TopTab.Screen name='All' component={AllScreen}/>
       <TopTab.Screen name='HP' component={DisplayHpMachines}/>
       <TopTab.Screen name='Dell' component={DisplayDellMachines}/>
-      <TopTab.Screen name='Mac' component={DisplayMacMachines}/>
       <TopTab.Screen name='Lenovo' component={DisplayLenovoMachines}/>
+      <TopTab.Screen name='Mac' component={DisplayMacMachines}/>
+      
 
     </TopTab.Navigator>
     </SafeAreaView>

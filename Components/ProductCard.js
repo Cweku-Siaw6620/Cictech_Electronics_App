@@ -15,7 +15,7 @@ export default function ProductCard({ products, addToCart, onProductPress }) {
     <SafeAreaView style={styles.container}>
       <FlatList
         data={products}
-        keyExtractor={(item, index) => item.id.toString() + index.toString()}
+       // keyExtractor={(item, index) => item.id.toString() + index.toString()}
         numColumns={2} // Display items in two columns
         renderItem={({ item }) => (
           <View style={styles.productContainer}>

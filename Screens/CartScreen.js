@@ -41,7 +41,7 @@ export default function CartScreen() {
       <Text style={styles.title}>Cart</Text>
       <FlatList
         data={cartItems}
-        keyExtractor={(item) => item.id.toString()}
+        //keyExtractor={(item) => item.id.toString()}
         renderItem={renderItem}
         ListEmptyComponent={<Text style={styles.emptyMessage}>Your cart is empty</Text>}
       />
