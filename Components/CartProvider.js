@@ -27,11 +27,13 @@ export const CartProvider = ({ children }) => {
   const addToCart = async (product) => {
     const itemExists = cartItems.some((item) => item.id === product.id);
     if (itemExists) {
-      Alert.alert("Already added", `${product.title} is already in the cart.`);
+      Alert.alert("Already added", `${product.name} is already in the cart.`);
       return;
     }
 
-    const updatedCart = [...cartItems, product];
+    const newProduct = { ...product, quantity: 1 };
+    const updatedCart = [...cartItems, newProduct];
+
     setCartItems(updatedCart);
     await AsyncStorage.setItem('CART_ITEMS', JSON.stringify(updatedCart));
   };

@@ -15,9 +15,10 @@ export default function CartScreen() {
       </TouchableOpacity>
       <Image source={{ uri: item.image }} style={styles.image} />
       <View style={styles.details}>
-        <Text style={styles.name}>{item.title}</Text>
+        <Text style={styles.name}>{item.name}</Text>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 10 }}>
-          <Text style={styles.price}>{`$${item.price.toFixed(2)}`}</Text>
+          <Text style={styles.price}>{`Ghc ${item.price.toFixed(2)}`}</Text>
+
           <View style={styles.quantityContainer}>
             <TouchableOpacity onPress={() => updateQuantity(item, item.quantity - 1)} style={styles.quantityButton}>
               <Text style={styles.quantityButtonText}>-</Text>
@@ -27,6 +28,7 @@ export default function CartScreen() {
               <Text style={styles.quantityButtonText}>+</Text>
             </TouchableOpacity>
           </View>
+
         </View>
       </View>
     </View>
@@ -41,13 +43,13 @@ export default function CartScreen() {
       <Text style={styles.title}>Cart</Text>
       <FlatList
         data={cartItems}
-        //keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item) => item._id.toString()}
         renderItem={renderItem}
         ListEmptyComponent={<Text style={styles.emptyMessage}>Your cart is empty</Text>}
       />
       <View style={styles.totalContainer}>
         <Text style={styles.totalLabel}>Est. Total:</Text>
-        <Text style={styles.totalValue}>${calculateTotal()}</Text>
+        <Text style={styles.totalValue}>Ghc {calculateTotal()}</Text>
       </View>
       <TouchableOpacity style={styles.checkoutButton} onPress={() => navigation.navigate('Checkout', { cartItems })}>
         <Text style={styles.checkoutButtonText}>Checkout</Text>

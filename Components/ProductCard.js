@@ -15,7 +15,7 @@ export default function ProductCard({ products, addToCart, onProductPress }) {
     <SafeAreaView style={styles.container}>
       <FlatList
         data={products}
-       // keyExtractor={(item, index) => item.id.toString() + index.toString()}
+       keyExtractor={(item, index) => item._id.toString() + index.toString()}
         numColumns={2} // Display items in two columns
         renderItem={({ item }) => (
           <View style={styles.productContainer}>
@@ -25,7 +25,7 @@ export default function ProductCard({ products, addToCart, onProductPress }) {
               {truncateDescription(item.description, 8)}
             </Text>
             <Text style={styles.productPrice}>
-              {item.price !== undefined ? `$${parseFloat(item.price).toFixed(2)}` : 'N/A'}
+              {item.price !== undefined ? `Ghc ${parseFloat(item.price).toFixed(2)}` : 'N/A'}
             </Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => addToCart(item)}>

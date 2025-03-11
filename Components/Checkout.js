@@ -25,13 +25,13 @@ export default function Checkout({navigation}) {
     <View style={styles.container}>
       <FlatList
         data={cartItems}
-        keyExtractor={(item) => item.id.toString()}
+       keyExtractor={(item) => item._id.toString()}
         renderItem={renderItem}
       />
 
     <View style={styles.totalContainer}>
         <Text style={styles.totalLabel}>Est. Total:</Text>
-        <Text style={styles.totalValue}>${calculateTotal()}</Text>
+        <Text style={styles.totalValue}>Ghc{calculateTotal()}</Text>
       </View>
       <TouchableOpacity style={styles.checkoutButton}  onPress={() => navigation.navigate('Place an Order', { cartItems })}>
         <Text style={styles.checkoutButtonText}>Place order</Text>

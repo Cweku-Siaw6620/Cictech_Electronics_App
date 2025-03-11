@@ -25,6 +25,7 @@ import ProfilePictureScreen from './Screens/ProfilePictureScreen';
 import PlaceOrder from './Components/PlaceOrder';
 import PaymentMethodScreen from './Components/PaymentMethod';
 import ConfirmationScreen from './Components/ConfirmationScreen';
+import BiddingScreen from './Screens/BiddingScreen';
 
 
 const Stack = createStackNavigator();
@@ -128,7 +129,7 @@ function Home() {
                   <Ionicons name="cash" size={size} color={color} />
                 ),
               }} 
-              name='Bidding' component={Profile}/>
+              name='Bidding' component={BiddingScreen}/>
 
               <Tabs.Screen  options={{
                  headerShown:false,

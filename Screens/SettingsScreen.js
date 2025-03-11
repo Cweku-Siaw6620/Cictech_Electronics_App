@@ -6,10 +6,8 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default function SettingsScreen({navigation}) {
   const [isEnabled, setIsEnabled] = useState(false);
-  const [isThemeEnabled, setIsThemeEnabled]= useState(false);
 
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
-  const toggleThemeSwitch =()=> setIsThemeEnabled(previousState=> !previousState)
 
   //Backend Devs must complete the functions of these toggles.
   
@@ -44,16 +42,10 @@ export default function SettingsScreen({navigation}) {
         <Icon style={{marginLeft:130}} name="angle-right" size={30} color="black" />
         </TouchableOpacity>
 
-        <View style={styles.touch}>
-        <Text style={styles.text}>Theme</Text>
-        <Switch
-        trackColor={{ false: "black", true: "blue" }}
-        thumbColor={isThemeEnabled ? "#f5dd4b" : "#f4f3f4"}
-        style={{marginLeft:210}}
-        onValueChange={toggleThemeSwitch}
-        value={isThemeEnabled}
-      />
-        </View>
+        <TouchableOpacity style={styles.touch}>
+        <Text style={styles.text}>About Us</Text>
+        <Icon style={{marginLeft:220}} name="angle-right" size={30} color="black" />
+        </TouchableOpacity>
         </View>
     </SafeAreaView>
   );

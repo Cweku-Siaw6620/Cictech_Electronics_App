@@ -220,7 +220,6 @@ export default function Profile({navigation,route}) {
 
 const styles = StyleSheet.create({
   header_container: {
-    marginTop:30,
     backgroundColor:"green",
     padding:20
   },
